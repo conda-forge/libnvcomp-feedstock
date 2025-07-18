@@ -26,7 +26,7 @@ source:
     sha256: e2c71babfd18a8e69542dd7e9ca018f9caa438094001a58e6bc4d8c999bf0d07
 
 build:
-  number: 0
+  number: 1
   skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
     - mkdir -pv $PREFIX/include                    # [linux]
@@ -199,15 +199,9 @@ about:
   license_url: https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
   summary: The NVIDIA nvCOMP development package.
   description: >-
-    The nvCOMP library provides fast lossless data compression and
-    decompression using a GPU. It features generic compression interfaces to
-    enable developers to use high-performance GPU compressors in their
-    applications.
+    The nvCOMP library provides fast lossless data compression and decompression using a GPU. It features generic compression interfaces to enable developers to use high-performance GPU compressors in their applications.
 
-    License Agreements:- The packages are governed by the standard NVIDIA
-    Software License Agreement (EULA). By downloading and using the packages,
-    you accept the terms and conditions of the NVIDIA nvCOMP EULA -
-    https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
+    License Agreements:- The packages are governed by the standard NVIDIA Software License Agreement (EULA). By downloading and using the packages, you accept the terms and conditions of the NVIDIA nvCOMP EULA - https://developer.download.nvidia.com/compute/nvcomp/2.3/LICENSE.txt
   doc_url: https://docs.nvidia.com/cuda/nvcomp/index.html
   dev_url: https://developer.nvidia.com/nvcomp
 
