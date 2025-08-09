@@ -87,12 +87,10 @@ outputs:
       include:
         - include  # [unix]
         - lib/cmake  # [unix]
-        - lib/*nvcomp_device_static.a  # [unix]
         - Library\include  # [win]
         - Library\lib\cmake  # [win]
         - Library\lib\nvcomp.lib  # [win]
         - Library\lib\nvcomp_cpu.lib  # [win]
-        - Library\lib\nvcomp_device_static.lib  # [win]
       exclude:
         - lib/cmake/nvcomp/*static*.cmake  # [linux]
         - Library\lib\cmake\nvcomp\*static*.cmake  # [win]
@@ -146,9 +144,6 @@ outputs:
         - lib/cmake/nvcomp/*static*.cmake  # [linux]
         - Library\lib\*static.lib  # [win]
         - Library\lib\cmake\nvcomp\*static*.cmake  # [win]
-      exclude:
-        - lib/*device_static.a  # [unix]
-        - Library\lib\*device_static.lib  # [win]
     build:
       ignore_run_exports:
         - cuda-version
