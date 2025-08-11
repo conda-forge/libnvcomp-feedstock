@@ -71,8 +71,8 @@ outputs:
         - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
         - test -f $PREFIX/lib/libnvcomp.so.{{ soname }}                    # [linux]
         - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
-        - if not exist %LIBRARY_BIN%\nvcomp.dll exit 1                     # [win]
-        - if not exist %LIBRARY_BIN%\nvcomp_cpu.dll exit 1                 # [win]
+        - if not exist %LIBRARY_BIN%\nvcomp64_5.dll exit 1                 # [win]
+        - if not exist %LIBRARY_BIN%\nvcomp_cpu64_5.dll exit 1             # [win]
     about:
       license: LicenseRef-nvCOMP-Software-License-Agreement AND LicenseRef-NVIDIA-End-User-License-Agreement
       license_file:
