@@ -7,13 +7,10 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cuda_compiler:
-- nvcc
+- cuda-nvcc
 cuda_compiler_version:
-- '11.8'
+- '12.9'
 cxx_compiler:
 - vs2022
 target_platform:
 - win-64
-zip_keys:
-- - cuda_compiler_version
-  - cuda_compiler
