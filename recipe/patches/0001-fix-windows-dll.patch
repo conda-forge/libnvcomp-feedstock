@@ -8,7 +8,7 @@ This patch fixes the _nvcomp_search_bin_name variable to use the correct
 library name.
 
 ---
- nvcomp-windows-x86_64-5.0.0.6_cuda12-archive/lib/cmake/nvcomp/nvcomp-config.cmake | 2 +-
+ lib/cmake/nvcomp/nvcomp-config.cmake | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/lib/cmake/nvcomp/nvcomp-config.cmake b/lib/cmake/nvcomp/nvcomp-config.cmake
