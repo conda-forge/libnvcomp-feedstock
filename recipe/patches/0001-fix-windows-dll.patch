@@ -1,0 +1,28 @@
+From: Bradley Dice <bdice@bradleydice.com>
+Date: Mon, 12 Aug 2025 12:11:01 -0500
+Subject: [PATCH] Fix nvcomp CMake configuration to use correct DLL names
+
+The nvcomp CMake configuration was incorrectly looking for 'nvcomp.dll'
+but the actual DLL file is named 'nvcomp64_5.dll'.
+This patch fixes the _nvcomp_search_bin_name variable to use the correct
+library name.
+
+---
+ nvcomp-windows-x86_64-5.0.0.6_cuda12-archive/lib/cmake/nvcomp/nvcomp-config.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/cmake/nvcomp/nvcomp-config.cmake b/lib/cmake/nvcomp/nvcomp-config.cmake
+index 1234567..abcdefg 100644
+--- a/lib/cmake/nvcomp/nvcomp-config.cmake
++++ b/lib/cmake/nvcomp/nvcomp-config.cmake
+@@ -63,7 +63,7 @@
+ set(_nvcomp_search_header_name nvcomp.h)
+ if(MSVC)
+     set(_nvcomp_search_lib_name nvcomp_static.lib nvcomp.lib)
+-    set(_nvcomp_search_bin_name nvcomp.dll)
++    set(_nvcomp_search_bin_name nvcomp64_5.dll)
+ else()
+     set(_nvcomp_search_lib_name libnvcomp_static.a libnvcomp.so)
+ endif()
+-- 
+2.25.1 

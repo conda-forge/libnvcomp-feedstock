@@ -20,6 +20,9 @@ package:
 source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/{{ platform }}/nvcomp-{{ platform }}-{{ version }}_cuda{{ cuda_major }}-archive.{{ extension }}
     sha256: {{ sha256 }}
+    patches:                                # [win]
+      # Fix Windows CMake dll name          # [win]
+      - patches/0001-fix-windows-dll.patch  # [win]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
     fn: cudart_LICENSE.txt
