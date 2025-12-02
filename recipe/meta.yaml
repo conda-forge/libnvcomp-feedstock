@@ -1,19 +1,16 @@
-{% set version = "5.0.0.6" %}
+{% set version = "5.1.0.21" %}
 {% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
-{% set sha256 = "64f5f7cc622f36006c503ee5a3f9d730b5c6cc49e4fab0fc0507c1272d5efa7b" %}  # [linux64 and (cuda_compiler_version or "None").startswith("11")]
-{% set sha256 = "40ac1d5f8c0a2719f11b21a4d31b6050343607dffd1401d1fe9a154800b56e46" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "4166e7c3825fa90139d50042154438ba06ea493985aeb7968fc1ad0d5fa5a22a" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "e98a20570e56ad94709c5014960c9f1fa9b4b5a7eb132dede85dd8ffd6c5f3f8" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("11")]
-{% set sha256 = "e57e658e35f6b266399ca2286e9439e5e9c9f3db907a718c55a07e6338b1c5bf" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "26f6189f302affba7a3df726164a809aa7a5118560283627bbaa9aaa860cbc96" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "5c2e1ee55398f47d28806eb7c53aca33b9e22d6d5b3acec86bbc4253c7e6d1d3" %}  # [win and (cuda_compiler_version or "None").startswith("11")]
-{% set sha256 = "d851077cf6ebaea21a548c4e55db45f0dd45271e35e7cffda7dd9917603ab8d4" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "d7d1397a438f6d16dbe9989a72ffcf9e7935f17c836316dd98403929c09c585a" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "bea7ea6c7f006b817dcb33a60d89c03f45684489ddc20295dc464af0505afd7c" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "2b3e2d0cd62e9185868359802550612deecf3cb9efe5f3e190ef2b64d4cb1957" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "023b2b63ec20e29cd4dcf4dd2a6690a21cd325fa08b3e09a47c74d28e4d2bb82" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "38968cccf31c51430db36580152af64b45a93f08ffedf7bbae12321fea62eaba" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "1225006a689416f1599fabbe20c81f048932c959bf7a099e39f47b41bea3e7fa" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "01b7bb6354f10226b581356df81f05cfd504479f99dbb38df0a4b83393428977" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
 {% set soname = version.split(".")[0] %}
 
 package:
@@ -23,16 +20,13 @@ package:
 source:
   - url: https://developer.download.nvidia.com/compute/nvcomp/redist/nvcomp/{{ platform }}/nvcomp-{{ platform }}-{{ version }}_cuda{{ cuda_major }}-archive.{{ extension }}
     sha256: {{ sha256 }}
-    patches:                                # [win]
-      # Fix Windows CMake dll name          # [win]
-      - patches/0001-fix-windows-dll.patch  # [win]
   # Include cudart license because it is statically linked.
   - url: https://developer.download.nvidia.com/compute/cuda/redist/cuda_cudart/LICENSE.txt
     fn: cudart_LICENSE.txt
     sha256: e2c71babfd18a8e69542dd7e9ca018f9caa438094001a58e6bc4d8c999bf0d07
 
 build:
-  number: 3
+  number: 0
   skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
     - mkdir -pv $PREFIX/include                    # [linux]
