@@ -29,6 +29,8 @@ build:
   number: 0
   skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
+    - mkdir -pv $PREFIX/bin                        # [linux]
+    - mv -v bin/* $PREFIX/bin                      # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
     - mkdir -pv $PREFIX/lib                        # [linux]
