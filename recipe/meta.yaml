@@ -51,6 +51,7 @@ outputs:
   - name: libnvcomp
     files:
       include:
+        - bin/nvlzcat  # [linux]
         - lib/*.so  # [linux]
         - lib/*.so.*  # [linux]
         - Library\bin  # [win]
@@ -70,6 +71,7 @@ outputs:
         - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
     test:
       commands:
+        - test -f $PREFIX/bin/nvlzcat                                      # [linux]
         - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
         - test -f $PREFIX/lib/libnvcomp.so.{{ soname }}                    # [linux]
         - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
@@ -87,7 +89,6 @@ outputs:
   - name: libnvcomp-dev
     files:
       include:
-        - bin/nvlzcat  # [unix]
         - include  # [unix]
         - lib/cmake  # [unix]
         - Library\include  # [win]
@@ -127,7 +128,6 @@ outputs:
       files:
         - test-shared
       commands:
-        - test -f $PREFIX/bin/nvlzcat                                      # [linux]
         - test -f $PREFIX/include/nvcomp.h                                 # [linux]
         - test -f $PREFIX/include/nvcomp.hpp                               # [linux]
         - test -f $PREFIX/lib/cmake/nvcomp/nvcomp-config.cmake             # [linux]
