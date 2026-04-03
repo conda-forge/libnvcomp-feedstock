@@ -85,7 +85,7 @@ outputs:
   - name: libnvcomp-dev
     files:
       include:
-        - bin/nvlzcat # [unix]
+        - bin/nvlzcat  # [unix]
         - include  # [unix]
         - lib/cmake  # [unix]
         - Library\include  # [win]
