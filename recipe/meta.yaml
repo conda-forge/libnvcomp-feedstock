@@ -1,16 +1,16 @@
-{% set version = "5.1.0.21" %}
+{% set version = "5.2.0.10" %}
 {% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
-{% set sha256 = "bea7ea6c7f006b817dcb33a60d89c03f45684489ddc20295dc464af0505afd7c" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "2b3e2d0cd62e9185868359802550612deecf3cb9efe5f3e190ef2b64d4cb1957" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "023b2b63ec20e29cd4dcf4dd2a6690a21cd325fa08b3e09a47c74d28e4d2bb82" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "38968cccf31c51430db36580152af64b45a93f08ffedf7bbae12321fea62eaba" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "1225006a689416f1599fabbe20c81f048932c959bf7a099e39f47b41bea3e7fa" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "01b7bb6354f10226b581356df81f05cfd504479f99dbb38df0a4b83393428977" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "3412fb302b3319e64fbbbc5b3cfc17148c872c0b939bf439aee82b328d758d09" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "2dd6c184c79fa5402c9b63a274e778d4b52e8d736ee927da81f07c1f8bed12ff" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "00ac4d2b4667f283015777285d87779aefaa09ccfb07bd32686afdb66564a52d" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "c7a7eaabb03ac9893144787cdb41c9c838d9af76124e2f3246f7e20ebbd8b9cc" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "531670d2fea73d3d499b9ea71c56381ef6a619226510d95f7e8ed588234257e1" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "af0a430a2d94981fc60ea13cce9ebe0cc3d814028fce783ea41b5a90716016d4" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
 {% set soname = version.split(".")[0] %}
 
 package:
@@ -29,6 +29,8 @@ build:
   number: 0
   skip: true  # [ppc64le or (cuda_compiler_version or "None") == "None"]
   script:
+    - mkdir -pv $PREFIX/bin                        # [linux]
+    - mv -v bin/* $PREFIX/bin                      # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
     - mkdir -pv $PREFIX/lib                        # [linux]
@@ -49,6 +51,7 @@ outputs:
   - name: libnvcomp
     files:
       include:
+        - bin/nvlzcat  # [linux]
         - lib/*.so  # [linux]
         - lib/*.so.*  # [linux]
         - Library\bin  # [win]
@@ -68,6 +71,7 @@ outputs:
         - {{ pin_compatible("cuda-version", min_pin="x", max_pin="x") }}
     test:
       commands:
+        - test -f $PREFIX/bin/nvlzcat                                      # [linux]
         - test -f $PREFIX/lib/libnvcomp.so                                 # [linux]
         - test -f $PREFIX/lib/libnvcomp.so.{{ soname }}                    # [linux]
         - test -f $PREFIX/lib/libnvcomp_cpu.so                             # [linux]
