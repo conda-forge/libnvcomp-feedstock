@@ -85,6 +85,7 @@ outputs:
   - name: libnvcomp-dev
     files:
       include:
+        - bin/nvlzcat # [unix]
         - include  # [unix]
         - lib/cmake  # [unix]
         - Library\include  # [win]
@@ -124,6 +125,7 @@ outputs:
       files:
         - test-shared
       commands:
+        - test -f $PREFIX/bin/nvlzcat                                      # [linux]
         - test -f $PREFIX/include/nvcomp.h                                 # [linux]
         - test -f $PREFIX/include/nvcomp.hpp                               # [linux]
         - test -f $PREFIX/lib/cmake/nvcomp/nvcomp-config.cmake             # [linux]
