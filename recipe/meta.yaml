@@ -215,4 +215,5 @@ about:
 extra:
   feedstock-name: libnvcomp
   recipe-maintainers:
+    - baliika
     - conda-forge/cuda
