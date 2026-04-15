@@ -215,5 +215,6 @@ about:
 extra:
   feedstock-name: libnvcomp
   recipe-maintainers:
+    - gmrrk
     - baliika
     - conda-forge/cuda
