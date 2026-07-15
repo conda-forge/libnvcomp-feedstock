@@ -1,16 +1,16 @@
-{% set version = "5.2.0.10" %}
+{% set version = "5.3.0.16" %}
 {% set cuda_major = (cuda_compiler_version|default("12.0.0")).split(".")[0] %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
 {% set extension = "tar.xz" %}  # [not win]
 {% set extension = "zip" %}  # [win]
-{% set sha256 = "3412fb302b3319e64fbbbc5b3cfc17148c872c0b939bf439aee82b328d758d09" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "2dd6c184c79fa5402c9b63a274e778d4b52e8d736ee927da81f07c1f8bed12ff" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "00ac4d2b4667f283015777285d87779aefaa09ccfb07bd32686afdb66564a52d" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "c7a7eaabb03ac9893144787cdb41c9c838d9af76124e2f3246f7e20ebbd8b9cc" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
-{% set sha256 = "531670d2fea73d3d499b9ea71c56381ef6a619226510d95f7e8ed588234257e1" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
-{% set sha256 = "af0a430a2d94981fc60ea13cce9ebe0cc3d814028fce783ea41b5a90716016d4" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "1def6bb0fa51d8ea3fe0c43ae1c58df2f63808ced7444267e14245583ec23f6f" %}  # [linux64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "2c36f5af63c37e4afe13d14f912e84130e6a05f07b066547b3e028c4ca54c866" %}  # [linux64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "1c982830d3c0c4b9e6fc55822cfe4f26b56347ddfa29725ee14e1605291bf772" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "d0b42d81db2eed6725058359e6eb287b5d4748dcccc95c93f337bce15fc8c3bf" %}  # [aarch64 and (cuda_compiler_version or "None").startswith("13")]
+{% set sha256 = "8549b0815770dcbf4d8496dc988fc118f9b9eb58e99a1f74b5b8f31b0e452151" %}  # [win and (cuda_compiler_version or "None").startswith("12")]
+{% set sha256 = "f5d8573d6dd48f40c394d19a26bb96fc3b94cd3a6f74fff43dd32e6df141c70d" %}  # [win and (cuda_compiler_version or "None").startswith("13")]
 {% set soname = version.split(".")[0] %}
 
 package:
