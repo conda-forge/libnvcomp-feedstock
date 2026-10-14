@@ -33,7 +33,10 @@ build:
     - mv -v bin/* $PREFIX/bin                      # [linux]
     - mkdir -pv $PREFIX/include                    # [linux]
     - mv -v include/* $PREFIX/include              # [linux]
-    - mkdir -pv $PREFIX/lib                        # [linux]
+    - mkdir -pv $PREFIX/lib/cmake                  # [linux]
+    # The host env already has $PREFIX/lib/cmake (openssl, zstd). mv cannot replace that directory.
+    - mv -v lib/cmake/* $PREFIX/lib/cmake/         # [linux]
+    - rm -rf lib/cmake                             # [linux]
     - mv -v lib/* $PREFIX/lib/                     # [linux]
     - mkdir %LIBRARY_INC%                                   # [win]
     - xcopy %SRC_DIR%\\include\\* %LIBRARY_INC%\\ /S /Y     # [win]
